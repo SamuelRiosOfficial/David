@@ -4,6 +4,13 @@ var shepherd:Node2D
 var slot=0
 var fear=0.0
 func _ready():
+	var cs=CollisionShape2D.new()
+	var capsule=CapsuleShape2D.new()
+	capsule.radius=20
+	capsule.height=60
+	cs.shape=capsule
+	cs.position.y=-10
+	add_child(cs)
 	var wool=Polygon2D.new()
 	wool.polygon=PackedVector2Array([Vector2(-29,-23),Vector2(-18,-39),Vector2(9,-38),Vector2(29,-21),Vector2(31,4),Vector2(18,23),Vector2(-22,22),Vector2(-33,4)])
 	wool.color=Color("#e8e1d3")
