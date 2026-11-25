@@ -20,12 +20,18 @@ func _ready():
 	cs.position.y=-52
 	add_child(cs)
 	sprite=Sprite2D.new()
-	sprite.texture=load("res://assets/characters/david/david_atlas.png")
-	sprite.hframes=4
-	sprite.vframes=4
 	sprite.position.y=-74
 	sprite.scale=Vector2(1.12,1.12)
-	add_child(sprite)
+	if ResourceLoader.exists("res://assets/characters/david/david_atlas.png"):
+		sprite.texture=load("res://assets/characters/david/david_atlas.png")
+		sprite.hframes=4
+		sprite.vframes=4
+		add_child(sprite)
+	else:
+		var silhouette=Polygon2D.new()
+		silhouette.polygon=PackedVector2Array([Vector2(-22,-108),Vector2(-14,-130),Vector2(10,-130),Vector2(22,-108),Vector2(18,-88),Vector2(28,-50),Vector2(24,-8),Vector2(-24,-8),Vector2(-28,-50),Vector2(-18,-88)])
+		silhouette.color=Color("#d8c6a5")
+		add_child(silhouette)
 func _physics_process(dt):
 	fire_timer=maxf(0,fire_timer-dt)
 	var x=Input.get_axis("move_left","move_right")
